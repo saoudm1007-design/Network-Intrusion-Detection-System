@@ -2,7 +2,6 @@
 
 ML-based Network Intrusion Detection System — XGBoost, MLP, CNN, Autoencoder + Isolation Forest on CIC-IDS2017. 98.45% Macro F1-Score. Streamlit dashboard with real-time classification and PDF threat reports.
 
-🟢 **Live Demo:** [nids.saoud.site](https://nids.saoud.site)
 
 ---
 
