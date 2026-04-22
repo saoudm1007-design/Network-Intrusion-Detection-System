@@ -1,0 +1,4 @@
+{
+  "best_model": "xgb_multi",
+  "macro_f1": 0.9845093568914954
+}
