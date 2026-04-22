@@ -1,0 +1,50 @@
+true_label,predicted_class,is_attack,confidence,anomaly_score
+Normal Traffic,Benign,0,0.99999917,0.00018821222
+Normal Traffic,Benign,0,0.99985087,0.001135236
+DDoS,DDoS,1,0.9999989,0.002477152
+Normal Traffic,Benign,0,0.9999821,0.00094686606
+Normal Traffic,Benign,0,0.99999905,0.00036943486
+Normal Traffic,Benign,0,0.9999993,5.645254e-05
+Normal Traffic,Benign,0,0.9999943,0.0015298615
+Normal Traffic,Benign,0,0.99999917,6.1479645e-05
+DDoS,DDoS,1,0.9999987,0.002040609
+Normal Traffic,Benign,0,0.99999785,0.0049012695
+Normal Traffic,Benign,0,0.99999475,0.0004604141
+Normal Traffic,Benign,0,0.99998844,0.012216302
+DoS,DoS,1,0.99999046,0.78215075
+Normal Traffic,Benign,0,0.999926,0.0078093475
+DoS,DoS,1,0.9999995,0.1788544
+Normal Traffic,Benign,0,0.99999976,5.2853622e-05
+Normal Traffic,Benign,0,0.99999774,0.00014062386
+Normal Traffic,Benign,0,0.9999982,2.8542117e-05
+Normal Traffic,Benign,0,0.9999988,6.905224e-05
+Normal Traffic,Benign,0,0.9999995,9.8707824e-05
+Normal Traffic,Benign,0,0.9999974,0.00016832688
+Normal Traffic,Benign,0,0.99999976,0.00094214664
+Normal Traffic,Benign,0,0.9999993,0.0012439317
+Normal Traffic,Benign,0,0.9999527,0.008970397
+Normal Traffic,Benign,0,0.99999976,0.00041376695
+Normal Traffic,Benign,0,0.99999905,0.00019216273
+Normal Traffic,Benign,0,0.99999774,0.00011527969
+DDoS,DDoS,1,0.99999917,0.0039831707
+Port Scanning,PortScan,1,0.9999995,0.007377633
+DoS,DoS,1,0.99997747,0.23399268
+DoS,DoS,1,0.9999995,0.8657486
+Normal Traffic,Benign,0,0.9999989,7.201705e-05
+Normal Traffic,Benign,0,0.9999981,9.8770455e-05
+Normal Traffic,Benign,0,0.9999988,0.00011252331
+Normal Traffic,Benign,0,0.9999993,0.000170652
+Normal Traffic,Benign,0,0.9999981,0.000101556536
+Normal Traffic,Benign,0,0.9999994,0.0002612973
+Normal Traffic,Benign,0,0.9999995,9.4833886e-05
+Normal Traffic,Benign,0,0.99999535,0.00027687938
+DoS,DoS,1,0.9999999,0.1725155
+DDoS,DDoS,1,0.9999993,0.020588987
+Normal Traffic,Benign,0,0.9999993,0.0027173604
+Normal Traffic,Benign,0,0.99999964,0.00020736606
+Normal Traffic,Benign,0,0.9999993,0.00016812704
+Normal Traffic,Benign,0,0.9999993,0.0008355382
+Normal Traffic,Benign,0,0.9999887,0.003981494
+Normal Traffic,Benign,0,0.99999964,0.00029304967
+Normal Traffic,Benign,0,0.9999831,0.0002453257
+Normal Traffic,Benign,0,0.9999989,0.00022553492

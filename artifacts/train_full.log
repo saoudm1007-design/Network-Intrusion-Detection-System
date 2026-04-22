@@ -1,0 +1,186 @@
+[21:52:35] INFO src.data_loader: Loading full dataset from data/raw/cicids2017_full.zip
+[21:52:35] INFO src.data_loader: Found 1 CSVs inside zip
+[21:52:51] INFO src.data_loader:   cicids2017_full.csv: 2,520,751 rows
+[21:52:51] INFO src.data_loader: Concatenated: 2,520,751 rows, 53 cols
+[21:52:51] INFO src.preprocessing: Cleaning frame
+[21:52:52] INFO src.preprocessing: Dropped 0 rows with NaN/inf
+[21:52:59] INFO src.preprocessing: Dropped 161 duplicate rows
+[21:52:59] INFO src.preprocessing: Subsampling Benign from 2,094,896 to 500,000
+[21:53:05] INFO src.preprocessing: Dropping 16 highly correlated cols (>0.95)
+[21:53:06] INFO src.preprocessing: Applying SMOTE (k_neighbors=5); target counts: {1: 50000, 2: 50000, 6: 50000}
+[21:53:07] INFO src.preprocessing: Splits — train: 788,716  val: 138,854  test: 138,855
+[21:53:07] INFO src.preprocessing: Classes: ['Benign', 'Bot', 'BruteForce', 'DDoS', 'DoS', 'PortScan', 'WebAttack']
+[21:53:07] INFO src.preprocessing: Saved scaler, label encoder, and feature list to artifacts
+[21:53:07] INFO src.train: Training Random Forest (multi-class)...
+[21:54:37] INFO src.evaluate: === rf_multi ===  macro-F1=0.9775
+[21:54:37] INFO src.evaluate: 
+              precision    recall  f1-score   support
+
+      Benign       1.00      1.00      1.00     75001
+         Bot       0.78      0.95      0.86       292
+  BruteForce       1.00      1.00      1.00      1373
+        DDoS       1.00      1.00      1.00     19202
+         DoS       1.00      1.00      1.00     29062
+    PortScan       1.00      1.00      1.00     13604
+   WebAttack       0.98      0.99      0.99       321
+
+    accuracy                           1.00    138855
+   macro avg       0.97      0.99      0.98    138855
+weighted avg       1.00      1.00      1.00    138855
+
+/home/saoud/Claude/Cyber-Ai-Project/src/evaluate.py:84: FutureWarning: 
+
+Passing `palette` without assigning `hue` is deprecated and will be removed in v0.14.0. Assign the `y` variable to `hue` and set `legend=False` for the same effect.
+
+  sns.barplot(data=df, x="importance", y="feature", palette="mako", ax=ax)
+[21:54:38] INFO src.train: Training Random Forest (binary)...
+[21:56:14] INFO src.evaluate: === rf_binary ===  macro-F1=0.9988
+[21:56:14] INFO src.evaluate: 
+              precision    recall  f1-score   support
+
+      Benign       1.00      1.00      1.00     75001
+      Attack       1.00      1.00      1.00     63854
+
+    accuracy                           1.00    138855
+   macro avg       1.00      1.00      1.00    138855
+weighted avg       1.00      1.00      1.00    138855
+
+[21:56:15] INFO src.train: Tuning XGBoost (multi-class) with 15 trials...
+[22:12:16] INFO src.models.xgboost_model: Best XGBoost trial macro-F1=0.9845, params={'n_estimators': 300, 'max_depth': 12, 'learning_rate': 0.14518497439122724, 'subsample': 0.8795975452591109, 'colsample_bytree': 0.7468055921327309, 'min_child_weight': 2, 'reg_lambda': 0.0017073967431528124}
+[22:13:25] INFO src.evaluate: === xgb_multi ===  macro-F1=0.9845
+[22:13:25] INFO src.evaluate: 
+              precision    recall  f1-score   support
+
+      Benign       1.00      1.00      1.00     75001
+         Bot       0.83      0.99      0.90       292
+  BruteForce       1.00      1.00      1.00      1373
+        DDoS       1.00      1.00      1.00     19202
+         DoS       1.00      1.00      1.00     29062
+    PortScan       1.00      1.00      1.00     13604
+   WebAttack       0.98      1.00      0.99       321
+
+    accuracy                           1.00    138855
+   macro avg       0.97      1.00      0.98    138855
+weighted avg       1.00      1.00      1.00    138855
+
+/home/saoud/Claude/Cyber-Ai-Project/src/evaluate.py:84: FutureWarning: 
+
+Passing `palette` without assigning `hue` is deprecated and will be removed in v0.14.0. Assign the `y` variable to `hue` and set `legend=False` for the same effect.
+
+  sns.barplot(data=df, x="importance", y="feature", palette="mako", ax=ax)
+[22:13:27] INFO src.train: Tuning XGBoost (binary) with 15 trials...
+[22:16:21] INFO src.models.xgboost_model: Best XGBoost trial macro-F1=0.9993, params={'n_estimators': 550, 'max_depth': 9, 'learning_rate': 0.13607801490147406, 'subsample': 0.7061753482887407, 'colsample_bytree': 0.9909729556485982, 'min_child_weight': 7, 'reg_lambda': 0.0070689749506246055}
+[22:16:39] INFO src.evaluate: === xgb_binary ===  macro-F1=0.9991
+[22:16:39] INFO src.evaluate: 
+              precision    recall  f1-score   support
+
+      Benign       1.00      1.00      1.00     75001
+      Attack       1.00      1.00      1.00     63854
+
+    accuracy                           1.00    138855
+   macro avg       1.00      1.00      1.00    138855
+weighted avg       1.00      1.00      1.00    138855
+
+[22:16:39] INFO src.train: Training MLP (multi-class)...
+[22:16:52] INFO src.models.mlp: MLP epoch 01  loss=0.2014  val_macroF1=0.7653
+[22:17:03] INFO src.models.mlp: MLP epoch 02  loss=0.0830  val_macroF1=0.7816
+[22:17:16] INFO src.models.mlp: MLP epoch 03  loss=0.0715  val_macroF1=0.7893
+[22:17:27] INFO src.models.mlp: MLP epoch 04  loss=0.0648  val_macroF1=0.7961
+[22:17:38] INFO src.models.mlp: MLP epoch 05  loss=0.0598  val_macroF1=0.8032
+[22:17:49] INFO src.models.mlp: MLP epoch 06  loss=0.0569  val_macroF1=0.8135
+[22:18:01] INFO src.models.mlp: MLP epoch 07  loss=0.0541  val_macroF1=0.8131
+[22:18:11] INFO src.models.mlp: MLP epoch 08  loss=0.0522  val_macroF1=0.8179
+[22:18:22] INFO src.models.mlp: MLP epoch 09  loss=0.0506  val_macroF1=0.8179
+[22:18:33] INFO src.models.mlp: MLP epoch 10  loss=0.0500  val_macroF1=0.8158
+[22:18:43] INFO src.models.mlp: MLP epoch 11  loss=0.0491  val_macroF1=0.8192
+[22:18:55] INFO src.models.mlp: MLP epoch 12  loss=0.0488  val_macroF1=0.8212
+[22:19:05] INFO src.models.mlp: MLP epoch 13  loss=0.0477  val_macroF1=0.8182
+[22:19:16] INFO src.models.mlp: MLP epoch 14  loss=0.0479  val_macroF1=0.8235
+[22:19:28] INFO src.models.mlp: MLP epoch 15  loss=0.0479  val_macroF1=0.8256
+[22:19:40] INFO src.models.mlp: MLP epoch 16  loss=0.0467  val_macroF1=0.8264
+[22:19:51] INFO src.models.mlp: MLP epoch 17  loss=0.0458  val_macroF1=0.8188
+[22:20:03] INFO src.models.mlp: MLP epoch 18  loss=0.0454  val_macroF1=0.8159
+[22:20:14] INFO src.models.mlp: MLP epoch 19  loss=0.0456  val_macroF1=0.8203
+[22:20:26] INFO src.models.mlp: MLP epoch 20  loss=0.0456  val_macroF1=0.8208
+[22:20:37] INFO src.models.mlp: MLP epoch 21  loss=0.0453  val_macroF1=0.8236
+[22:20:37] INFO src.models.mlp: Early stopping at epoch 21 (best macroF1=0.8264)
+[22:20:37] INFO src.evaluate: === mlp_multi ===  macro-F1=0.8296
+[22:20:37] INFO src.evaluate: 
+              precision    recall  f1-score   support
+
+      Benign       1.00      0.96      0.98     75001
+         Bot       0.24      0.99      0.38       292
+  BruteForce       0.94      0.98      0.96      1373
+        DDoS       1.00      1.00      1.00     19202
+         DoS       0.98      1.00      0.99     29062
+    PortScan       0.92      1.00      0.96     13604
+   WebAttack       0.37      1.00      0.54       321
+
+    accuracy                           0.98    138855
+   macro avg       0.78      0.99      0.83    138855
+weighted avg       0.98      0.98      0.98    138855
+
+[22:20:38] INFO src.train: Training CNN-1D (multi-class)...
+[22:21:33] INFO src.models.cnn1d: CNN1D epoch 01  loss=0.1882  val_macroF1=0.7872
+[22:22:27] INFO src.models.cnn1d: CNN1D epoch 02  loss=0.0661  val_macroF1=0.7787
+[22:23:19] INFO src.models.cnn1d: CNN1D epoch 03  loss=0.0555  val_macroF1=0.8132
+[22:24:12] INFO src.models.cnn1d: CNN1D epoch 04  loss=0.0516  val_macroF1=0.0055
+[22:25:06] INFO src.models.cnn1d: CNN1D epoch 05  loss=0.0499  val_macroF1=0.0657
+[22:26:00] INFO src.models.cnn1d: CNN1D epoch 06  loss=0.0449  val_macroF1=0.8270
+[22:26:53] INFO src.models.cnn1d: CNN1D epoch 07  loss=0.0432  val_macroF1=0.6920
+[22:27:46] INFO src.models.cnn1d: CNN1D epoch 08  loss=0.0411  val_macroF1=0.7888
+[22:28:43] INFO src.models.cnn1d: CNN1D epoch 09  loss=0.0401  val_macroF1=0.8354
+[22:29:38] INFO src.models.cnn1d: CNN1D epoch 10  loss=0.0395  val_macroF1=0.8239
+[22:30:33] INFO src.models.cnn1d: CNN1D epoch 11  loss=0.0373  val_macroF1=0.1296
+[22:31:30] INFO src.models.cnn1d: CNN1D epoch 12  loss=0.0373  val_macroF1=0.8336
+[22:32:25] INFO src.models.cnn1d: CNN1D epoch 13  loss=0.0375  val_macroF1=0.8291
+[22:33:23] INFO src.models.cnn1d: CNN1D epoch 14  loss=0.0356  val_macroF1=0.8228
+[22:33:23] INFO src.models.cnn1d: Early stopping at epoch 14 (best macroF1=0.8354)
+[22:33:31] INFO src.evaluate: === cnn1d_multi ===  macro-F1=0.8400
+[22:33:31] INFO src.evaluate: 
+              precision    recall  f1-score   support
+
+      Benign       0.99      0.96      0.98     75001
+         Bot       0.24      0.99      0.39       292
+  BruteForce       0.99      0.97      0.98      1373
+        DDoS       0.99      1.00      0.99     19202
+         DoS       0.99      0.98      0.99     29062
+    PortScan       0.92      1.00      0.96     13604
+   WebAttack       0.43      1.00      0.60       321
+
+    accuracy                           0.97    138855
+   macro avg       0.79      0.98      0.84    138855
+weighted avg       0.98      0.97      0.98    138855
+
+[22:33:34] INFO src.train: Training Autoencoder on 349,999 benign flows...
+[22:33:38] INFO src.models.autoencoder: AE epoch 1  mse=0.506302
+[22:34:03] INFO src.models.autoencoder: AE epoch 10  mse=0.086852
+[22:34:31] INFO src.models.autoencoder: AE epoch 20  mse=0.080726
+[22:34:58] INFO src.models.autoencoder: AE epoch 30  mse=0.043491
+[22:35:24] INFO src.models.autoencoder: AE epoch 40  mse=0.016932
+[22:35:51] INFO src.models.autoencoder: AE epoch 50  mse=0.020674
+[22:35:53] INFO src.models.autoencoder: AE reconstruction threshold (p99) = 0.057032
+[22:35:53] INFO src.evaluate: === autoencoder_binary ===  macro-F1=0.7480
+[22:35:53] INFO src.evaluate: 
+              precision    recall  f1-score   support
+
+      Benign       0.70      0.99      0.82     75001
+      Attack       0.98      0.51      0.67     63854
+
+    accuracy                           0.77    138855
+   macro avg       0.84      0.75      0.75    138855
+weighted avg       0.83      0.77      0.75    138855
+
+[22:35:54] INFO src.train: Training IsolationForest (contamination=0.4599)...
+[22:35:57] INFO src.evaluate: === iforest_binary ===  macro-F1=0.5328
+[22:35:57] INFO src.evaluate: 
+              precision    recall  f1-score   support
+
+      Benign       0.58      0.52      0.55     75001
+      Attack       0.49      0.55      0.52     63854
+
+    accuracy                           0.53    138855
+   macro avg       0.53      0.53      0.53    138855
+weighted avg       0.54      0.53      0.53    138855
+
+[22:35:58] INFO src.train: Best multi-class model: xgb_multi  (macro-F1=0.9845)
